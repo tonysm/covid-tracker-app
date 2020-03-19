@@ -23,7 +23,7 @@
 
     <footer class="mt-6 bg-gray-200 border-t border-gray-400 h-20 flex items-center justify-center font-mono">
         <p class="text-gray-900">
-            By: Tony Messias
+            Stay safe. Wash your hands.
         </p>
     </footer>
 @endsection
