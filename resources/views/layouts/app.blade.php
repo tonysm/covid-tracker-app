@@ -11,6 +11,8 @@
 </head>
 <body>
     @include('_nav')
-    @yield('content')
+    <div class="pt-32">
+        @yield('content')
+    </div>
 </body>
 </html>

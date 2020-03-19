@@ -1,4 +1,4 @@
-<div class="p-6 mb-6 shadow">
+<div class="p-6 mb-6 shadow fixed bg-white w-full">
     <nav class="container mx-auto flex items-center justify-between flex-wrap">
         <div class="flex items-center flex-shrink-0 text-black font-bold mr-6">
             <span class="font-semibold font-mono text-3xl tracking-tight">COVID-19 Tracker</span>
