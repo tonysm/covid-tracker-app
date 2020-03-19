@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <div class="pb-4 text-center text-4xl">
-                            {{ $location['latest']['confirmed'] }}
+                            {{ number_format($location['latest']['confirmed'], 0, '', ',') }}
                         </div>
                     </a>
                 </div>
