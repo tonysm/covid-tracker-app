@@ -1,4 +1,4 @@
-<div class="p-6 mb-6 shadow fixed bg-white w-full">
+<div class="p-6 mb-6 shadow fixed bg-white w-full z-10">
     <nav class="container mx-auto flex items-center justify-between flex-wrap">
         <div class="flex items-center flex-shrink-0 text-black font-bold mr-6">
             <span class="font-semibold font-mono text-3xl tracking-tight">COVID-19 Tracker</span>
@@ -15,13 +15,13 @@
                 </a>
             </div>
             <div class="flex">
-                <a href="#" class="mr-2 flex items-center inline-block text-sm px-4 py-2 leading-none border text-gray-800 border-gray-700 hover:border-transparent hover:bg-gray-800 hover:text-gray-200 mt-4 lg:mt-0">
+                <a href="" class="mr-2 flex items-center inline-block text-sm px-4 py-2 leading-none border text-gray-800 border-gray-700 hover:border-transparent hover:bg-gray-800 hover:text-gray-200 mt-4 lg:mt-0">
                     <svg class="mr-1 h-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M9.26 13a2 2 0 0 1 .01-2.01A3 3 0 0 0 9 5H5a3 3 0 0 0 0 6h.08a6.06 6.06 0 0 0 0 2H5A5 5 0 0 1 5 3h4a5 5 0 0 1 .26 10zm1.48-6a2 2 0 0 1-.01 2.01A3 3 0 0 0 11 15h4a3 3 0 0 0 0-6h-.08a6.06 6.06 0 0 0 0-2H15a5 5 0 0 1 0 10h-4a5 5 0 0 1-.26-10z"/>
                     </svg>
                     Source Code
                 </a>
-                <a href="#" class="flex items-center inline-block text-sm px-4 py-2 leading-none border text-gray-800 border-gray-700 hover:border-transparent hover:bg-gray-800 hover:text-gray-200 mt-4 lg:mt-0">
+                <a href="https://github.com/ExpDev07/coronavirus-tracker-api" target="_blank" class="flex items-center inline-block text-sm px-4 py-2 leading-none border text-gray-800 border-gray-700 hover:border-transparent hover:bg-gray-800 hover:text-gray-200 mt-4 lg:mt-0">
                     <svg class="mr-1 h-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M9.26 13a2 2 0 0 1 .01-2.01A3 3 0 0 0 9 5H5a3 3 0 0 0 0 6h.08a6.06 6.06 0 0 0 0 2H5A5 5 0 0 1 5 3h4a5 5 0 0 1 .26 10zm1.48-6a2 2 0 0 1-.01 2.01A3 3 0 0 0 11 15h4a3 3 0 0 0 0-6h-.08a6.06 6.06 0 0 0 0-2H15a5 5 0 0 1 0 10h-4a5 5 0 0 1-.26-10z"/>
                     </svg>
