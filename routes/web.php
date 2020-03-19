@@ -13,4 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('welcome');
+Route::get('/', function () {
+    return view('welcome', [
+        'locations' => \App\Location::orderBy('country_code', 'ASC')->get(),
+    ]);
+})->name('welcome');
