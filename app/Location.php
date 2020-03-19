@@ -20,7 +20,7 @@ class Location extends Model
 
     public function getRows()
     {
-        return Cache::remember('locations', now()->addMinute(), function () {
+        return Cache::remember('locations', now()->addMinutes(10), function () {
             return collect(Http::get('https://coronavirus-tracker-api.herokuapp.com/confirmed')->json()['locations'])
                 ->map(function (array $item) {
                     return array_replace($item, [
