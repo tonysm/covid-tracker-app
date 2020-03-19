@@ -5,15 +5,17 @@
         <h2 class="text-lg sm:text-6xl text-center font-sans font-bold py-4">Confirmed Cases Around the World</h2>
         <div class="sm:grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 sm:-mx-2">
             @foreach($locations as $location)
-                <div class="sm:m-2 sm:max-w-sm rounded overflow-hidden shadow-lg flex flex-col">
-                    <div class="px-6 pt-4 flex-1">
-                        <div class="font-bold text-xl mb-2">
-                            {{ $location->country }} <span class="text-gray-600">({{ $location->country_code }})</span>
+                <div class="sm:m-2 sm:max-w-sm rounded overflow-hidden shadow-lg">
+                    <a class="block h-full flex flex-col" href="{{ route('locations.show', $location->country_code) }}">
+                        <div class="px-6 pt-4 flex-1">
+                            <div class="font-bold text-xl mb-2">
+                                {{ $location->country }} <span class="text-gray-600">({{ $location->country_code }})</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="pb-4 text-center text-4xl">
-                        {{ $location->latest_cases_count }}
-                    </div>
+                        <div class="pb-4 text-center text-4xl">
+                            {{ $location->latest_cases_count }}
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>
