@@ -18,7 +18,7 @@ class Covid
     public function allLocations()
     {
         return collect($this->cached('locations', function () {
-            return Http::get('https://coronavirus-tracker-api.herokuapp.com/v2/locations')->json()['locations'];
+            return $this->squashCountries(Http::get('https://coronavirus-tracker-api.herokuapp.com/v2/locations')->json()['locations']);
         }));
     }
 
@@ -32,5 +32,21 @@ class Covid
     private function cached($key, Closure $callback)
     {
         return Cache::remember($key, now()->addMinutes(10), $callback);
+    }
+
+    private function squashCountries(Array $locations)
+    {
+        $squased = [];
+        foreach ($locations as $location) {
+            if (!isset($squased[$location['country_code']])) {
+                $squased[$location['country_code']] = $location;
+            }
+            else {
+                $squased[$location['country_code']]['latest']['confirmed'] += $location['latest']['confirmed'];
+                $squased[$location['country_code']]['latest']['deaths'] += $location['latest']['deaths'];
+                $squased[$location['country_code']]['latest']['recovered'] += $location['latest']['recovered'];
+            }
+        }
+        return $squased;
     }
 }
