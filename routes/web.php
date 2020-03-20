@@ -1,6 +1,7 @@
 <?php
 
 use Facades\App\Services\Covid;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,10 +10,12 @@ Route::get('/', function () {
 
 Route::prefix('_partials')->as('partials.')->group(function () {
     Route::get('world-stats', function () {
-        return view('_partials.world-stats', [
-            'stats' => Covid::stats(),
-            'locations' => Covid::allLocations()->sortBy('country_code'),
-        ]);
+        return Cache::remember('_partials.world-stats', now()->addMinutes(1), function () {
+            return view('_partials.world-stats', [
+                'stats' => Covid::stats(),
+                'locations' => Covid::allLocations()->sortBy('country_code'),
+            ])->render();
+        });
     })->name('world-stats');
 });
 
