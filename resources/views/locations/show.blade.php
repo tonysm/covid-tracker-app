@@ -13,7 +13,7 @@
         </p>
     </footer>
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('turbolinks:load', function () {
             google.charts.load('current', {'packages': ['corechart']});
             google.charts.setOnLoadCallback(drawChart);
 
