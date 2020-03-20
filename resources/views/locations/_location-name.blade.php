@@ -1,1 +1,1 @@
-{{ $location['country'] }} <span class="text-gray-600">({{ implode(', ', array_filter([$location['province'], $location['country_code']], fn ($item) => !empty($item))) }})</span>
+{{ $location['country'] }} <span class="text-gray-600">({{ $location['country_code'] }})</span>
