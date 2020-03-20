@@ -3,6 +3,22 @@
 @section('content')
     <div class="container px-6 sm:p-0 mx-auto">
         <h2 class="text-lg sm:text-6xl text-center font-sans font-bold py-4">Confirmed Cases Around the World</h2>
+        <div class="flex justify-center mb-6">
+            <div class="inline-flex">
+                <a
+                    href="?sort=country"
+                    class="text-gray-800 font-bold py-2 px-4 rounded-l {{ request()->query('sort', 'country') === 'country' ? 'bg-gray-400 hover:bg-gray-300' : 'bg-gray-300 hover:bg-gray-400' }}"
+                >
+                    Sort by Country
+                </a>
+                <a
+                    href="?sort=confirmed"
+                    class="text-gray-800 font-bold py-2 px-4 rounded-r {{ request()->query('sort', '') === 'confirmed' ? 'bg-gray-400 hover:bg-gray-300' : 'bg-gray-300 hover:bg-gray-400' }}"
+                >
+                    Sort by Confirmed
+                </a>
+            </div>
+        </div>
         @if(cache()->has('_partials.world-stats'))
             {!! cache()->get('_partials.world-stats', '') !!}
         @else
