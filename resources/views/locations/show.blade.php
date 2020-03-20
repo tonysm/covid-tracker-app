@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container px-6 sm:p-0 mx-auto h-full">
-        <h2 class="text-lg sm:text-6xl text-center font-sans font-bold py-4">Confirmed Cases in: {{ $location['country'] }} <span class="text-gray-600">({{ $location['country_code'] }})</span></h2>
+        <h2 class="text-lg sm:text-6xl text-center font-sans font-bold py-4">
+            Confirmed Cases in: @include('locations._location-name', ['location' => $location])
+        </h2>
         @include('locations._stats', ['stats' => $location['latest']])
         <div style="height:100%;width:100%;" id="chart"></div>
     </div>

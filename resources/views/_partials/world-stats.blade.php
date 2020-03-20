@@ -6,7 +6,7 @@
             <a class="block h-full flex flex-col" href="{{ route('locations.show', $location['id']) }}">
                 <div class="px-6 pt-4 flex-1">
                     <div class="font-bold text-xl mb-2">
-                        {{ $location['country'] }} <span class="text-gray-600">({{ $location['country_code'] }})</span>
+                        @include('locations._location-name', ['location' => $location])
                     </div>
                 </div>
                 <div class="pb-4 text-center text-4xl">
