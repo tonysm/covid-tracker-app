@@ -6,23 +6,24 @@
         <div class="flex justify-center mb-6">
             <div class="inline-flex">
                 <a
-                    href="?sort=country"
-                    class="text-gray-800 font-bold py-2 px-4 rounded-l {{ request()->query('sort', 'country') === 'country' ? 'bg-gray-400 hover:bg-gray-300' : 'bg-gray-300 hover:bg-gray-400' }}"
+                    href="?sort=country_code"
+                    class="text-gray-800 font-bold py-2 px-4 rounded-l {{ request()->query('sort', 'country_code') === 'country_code' ? 'bg-gray-400 hover:bg-gray-300' : 'bg-gray-300 hover:bg-gray-400' }}"
                 >
                     Sort by Country
                 </a>
                 <a
-                    href="?sort=confirmed"
-                    class="text-gray-800 font-bold py-2 px-4 rounded-r {{ request()->query('sort', '') === 'confirmed' ? 'bg-gray-400 hover:bg-gray-300' : 'bg-gray-300 hover:bg-gray-400' }}"
+                    href="?sort=-confirmed"
+                    class="text-gray-800 font-bold py-2 px-4 rounded-r {{ request()->query('sort', '') === '-confirmed' ? 'bg-gray-400 hover:bg-gray-300' : 'bg-gray-300 hover:bg-gray-400' }}"
                 >
                     Sort by Confirmed
                 </a>
             </div>
         </div>
-        @if(cache()->has('_partials.world-stats'))
-            {!! cache()->get('_partials.world-stats', '') !!}
+
+        @if(cache()->has("_partials.world-stats.{$sort}"))
+            {!! cache()->get("_partials.world-stats.{$sort}", '') !!}
         @else
-            <include-fragment src="{{ route('partials.world-stats') }}">
+            <include-fragment src="{{ route('partials.world-stats', ['sort' => $sort]) }}">
                 @include('_partials.world-stats-loading')
             </include-fragment>
         @endif

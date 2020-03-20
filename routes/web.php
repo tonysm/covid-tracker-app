@@ -1,26 +1,45 @@
 <?php
 
-use Facades\App\Services\Covid;
+use App\Services\Covid;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'sort' => request()->query('sort', 'country_code'),
+    ]);
 })->name('welcome');
 
-Route::prefix('_partials')->as('partials.')->group(function () {
-    Route::get('world-stats', function () {
-        return Cache::remember('_partials.world-stats', now()->addMinutes(1), function () {
-            return view('_partials.world-stats', [
-                'stats' => Covid::stats(),
-                'locations' => Covid::allLocations()->sortBy('country_code'),
-            ])->render();
-        });
-    })->name('world-stats');
-});
+Route::prefix('_partials')
+    ->as('partials.')
+    ->group(function () {
+        Route::get('world-stats', function (Covid $covid) {
+            request()->validate([
+                'sort' => ['sometimes', 'required', 'in:country_code,-confirmed'],
+            ]);
 
-Route::get('locations/{location}', function ($location) {
-    $location = Covid::location($location);
+            $sort = request()->query('sort', 'country_code');
+
+            return Cache::remember("_partials.world-stats.{$sort}", now()->addMinutes(1), function () use ($sort, $covid) {
+                $sorters = [
+                    'country_code' => fn (Collection $locations) => $locations->sortBy('country_code'),
+                    '-confirmed' => fn (Collection $locations) => $locations->sortByDesc('latest.confirmed'),
+                ];
+
+                /** @var \Closure $sorter */
+                $sorter = $sorters[$sort] ?? $sorters['country_code'];
+
+                return view('_partials.world-stats', [
+                    'stats' => $covid->stats(),
+                    'locations' => $sorter($covid->allLocations()),
+                ])->render();
+            });
+        })->name('world-stats');
+    });
+
+Route::get('locations/{location}', function ($location, Covid $covid) {
+    $location = $covid->location($location);
 
     return view('locations.show', [
         'location' => $location,
