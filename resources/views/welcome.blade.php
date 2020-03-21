@@ -6,8 +6,8 @@
         <div class="flex justify-center mb-6">
             <div class="inline-flex">
                 <a
-                    href="?sort=country_code"
-                    class="text-gray-800 font-bold py-2 px-4 rounded-l {{ request()->query('sort', 'country_code') === 'country_code' ? 'bg-gray-400 hover:bg-gray-300' : 'bg-gray-300 hover:bg-gray-400' }}"
+                    href="?sort=country"
+                    class="text-gray-800 font-bold py-2 px-4 rounded-l {{ request()->query('sort', 'country') === 'country' ? 'bg-gray-400 hover:bg-gray-300' : 'bg-gray-300 hover:bg-gray-400' }}"
                 >
                     Sort by Country
                 </a>
