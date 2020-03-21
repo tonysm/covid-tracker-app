@@ -1,7 +1,7 @@
 <div class="p-6 mb-6 shadow fixed bg-white w-full z-10" x-data="{ showMenu: false }">
     <nav class="container mx-auto flex items-center justify-between flex-wrap">
         <div class="flex items-center flex-shrink-0 text-black font-bold mr-6">
-            <span class="font-semibold font-mono text-3xl tracking-tight">COVID-19 Tracker</span>
+            <span class="font-semibold font-mono text-lg sm:text-3xl tracking-tight">COVID-19 Tracker</span>
         </div>
         <div class="block lg:hidden">
             <button class="flex items-center px-3 py-2 border text-gray-700 border-gray-700 hover:text-gray-500 hover:border-gray-500" @click="showMenu = !showMenu">
