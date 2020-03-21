@@ -3,7 +3,7 @@
 <div class="sm:grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 sm:-mx-2">
     @foreach($locations as $location)
         <div class="sm:m-2 sm:max-w-sm rounded overflow-hidden shadow-lg">
-            <a class="block h-full flex flex-col" href="{{ route('locations.show', $location['id']) }}">
+            <a class="block h-full flex flex-col" href="{{ route('locations.show', $location['country_code']) }}">
                 <div class="px-6 pt-4 flex-1">
                     <div class="font-bold text-xl mb-2">
                         @include('locations._location-name', ['location' => $location])
