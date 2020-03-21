@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Closure;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
@@ -27,7 +28,7 @@ class Covid
 
     public function location(string $countryCode)
     {
-        return $this->allLocations($countryCode)->get($countryCode);
+        return $this->clearFirstDatesWithoutCauses($this->allLocations($countryCode)->get($countryCode));
     }
 
     private function cached($key, Closure $callback)
@@ -71,5 +72,43 @@ class Covid
         }
 
         return $first;
+    }
+
+    private function clearFirstDatesWithoutCauses(array $location = null): ?array
+    {
+        if (!$location) return $location;
+
+        foreach (['confirmed', 'deaths', 'recovered'] as $timeline) {
+            $location['timelines'][$timeline]['timeline'] = $this->clearTimeline($location['timelines'][$timeline]['timeline']);
+        }
+
+        return $location;
+    }
+
+    private function clearTimeline(array $timeline): array
+    {
+        $timelineCollection = collect($timeline)
+            ->map(fn ($count, $date) => ['date' => $date, 'count' => $count])
+            ->values();
+
+        $firstNonZeroIndex = null;
+
+        foreach ($timelineCollection as $key => $item) {
+            if ($item['count'] > 0) {
+                $firstNonZeroIndex = $key;
+                break;
+            }
+        }
+
+        if ($firstNonZeroIndex === null) {
+            return $timeline;
+        }
+
+        return $timelineCollection
+            ->slice(max($firstNonZeroIndex - 1, 0))
+            ->reduce(function ($items, $item) {
+                $items[$item['date']] = $item['count'];
+                return $items;
+            }, []);
     }
 }
