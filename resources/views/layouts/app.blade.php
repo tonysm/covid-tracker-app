@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 <body>
     @include('_nav')
