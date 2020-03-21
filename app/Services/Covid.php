@@ -27,7 +27,7 @@ class Covid
 
     public function location(string $countryCode)
     {
-        return collect($this->allLocations($countryCode)->get($countryCode));
+        return $this->allLocations($countryCode)->get($countryCode);
     }
 
     private function cached($key, Closure $callback)
