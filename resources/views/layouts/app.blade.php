@@ -7,9 +7,9 @@
     <title>{{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"></script>
 </head>
 <body>
     @include('_nav')
