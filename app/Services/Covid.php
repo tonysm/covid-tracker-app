@@ -48,13 +48,13 @@ class Covid
                 $squased[$location['country_code']]['latest']['confirmed'] += $location['latest']['confirmed'];
                 $squased[$location['country_code']]['latest']['deaths'] += $location['latest']['deaths'];
                 $squased[$location['country_code']]['latest']['recovered'] += $location['latest']['recovered'];
-            }
 
-            if (isset($squased[$location['country_code']]['timelines'])) {
-                $squased[$location['country_code']]['timelines'] = $this->mergeTimelines(
-                    $squased[$location['country_code']]['timelines'],
-                    $location['timelines']
-                );
+                if (isset($squased[$location['country_code']]['timelines'])) {
+                    $squased[$location['country_code']]['timelines'] = $this->mergeTimelines(
+                        $squased[$location['country_code']]['timelines'],
+                        $location['timelines']
+                    );
+                }
             }
         }
 
