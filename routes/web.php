@@ -15,10 +15,6 @@ Route::prefix('_partials')
     ->as('partials.')
     ->group(function () {
         Route::get('world-stats', function (Covid $covid) {
-            request()->validate([
-                'sort' => ['sometimes', 'required', 'in:country,-confirmed'],
-            ]);
-
             $sort = request()->query('sort', 'country');
 
             return Cache::remember("_partials.world-stats.{$sort}", now()->addMinutes(1), function () use ($sort, $covid) {
