@@ -47,7 +47,7 @@ Route::get('locations/{location}', function ($location, Covid $covid) {
             ->merge(collect($location['timelines']['confirmed']['timeline'])->sortBy(function ($numConfirmed, $date) {
                 return Carbon\Carbon::parse($date)->startOfDay();
             })->map(function ($numConfirmed, $date) {
-                return [$date, $numConfirmed];
+                return [Carbon\Carbon::parse($date)->format('Y-m-d'), $numConfirmed];
             })->values()),
     ]);
 })->name('locations.show');
